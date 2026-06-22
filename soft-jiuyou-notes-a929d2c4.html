@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>jiuyou.com — 资料整理与信息索引</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: linear-gradient(145deg, #fef1e0 0%, #f9dac4 60%, #f1c7ae 100%);
+      font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+      line-height: 1.7;
+      color: #2d2a28;
+      padding: 2.5rem 1.25rem;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .page {
+      max-width: 880px;
+      width: 100%;
+    }
+
+    .hero {
+      background: rgba(255, 245, 235, 0.85);
+      backdrop-filter: blur(2px);
+      border-radius: 48px 48px 28px 28px;
+      padding: 2.8rem 2.2rem 2.2rem;
+      margin-bottom: 2.4rem;
+      box-shadow: 0 12px 30px rgba(120, 70, 40, 0.12);
+      text-align: center;
+    }
+
+    .hero h1 {
+      font-size: 2.6rem;
+      font-weight: 500;
+      letter-spacing: -0.02em;
+      color: #5f3d2b;
+      margin-bottom: 0.5rem;
+    }
+
+    .hero .kicker {
+      font-size: 1.1rem;
+      color: #7d5c48;
+      background: rgba(240, 213, 192, 0.5);
+      display: inline-block;
+      padding: 0.25rem 1rem;
+      border-radius: 30px;
+      margin-top: 0.3rem;
+    }
+
+    .hero p {
+      margin-top: 1.6rem;
+      max-width: 660px;
+      margin-left: auto;
+      margin-right: auto;
+      color: #3f332b;
+      font-size: 1.05rem;
+    }
+
+    .card-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 1.6rem;
+      margin-top: 0.8rem;
+    }
+
+    .card {
+      background: #ffffff;
+      border-radius: 28px;
+      padding: 2rem 2.2rem;
+      box-shadow: 0 4px 14px rgba(80, 50, 30, 0.06), 0 10px 28px rgba(100, 60, 35, 0.08);
+      transition: transform 0.15s ease, box-shadow 0.2s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 28px rgba(90, 55, 32, 0.10);
+    }
+
+    .card h2 {
+      font-size: 1.5rem;
+      font-weight: 500;
+      color: #5a3c2a;
+      border-left: 5px solid #d9a88b;
+      padding-left: 1rem;
+      margin-bottom: 1rem;
+    }
+
+    .card p {
+      margin-bottom: 0.9rem;
+    }
+
+    .card p:last-child {
+      margin-bottom: 0;
+    }
+
+    .card ul {
+      list-style: none;
+      padding-left: 0;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem 1.5rem;
+      margin-top: 0.6rem;
+    }
+
+    .card ul li {
+      position: relative;
+      padding-left: 1.25rem;
+      color: #4a3c33;
+    }
+
+    .card ul li::before {
+      content: "·";
+      position: absolute;
+      left: 0;
+      color: #b5846a;
+      font-weight: bold;
+      font-size: 1.3rem;
+      line-height: 1.4;
+    }
+
+    .accent-link {
+      display: inline-block;
+      background: #f3e2d4;
+      color: #4f3627;
+      padding: 0.2rem 0.9rem;
+      border-radius: 40px;
+      text-decoration: none;
+      font-weight: 540;
+      transition: background 0.2s, color 0.2s;
+      border: 1px solid transparent;
+    }
+
+    .accent-link:hover {
+      background: #e3ccb9;
+      color: #2d1f17;
+      border-color: #cba88b;
+    }
+
+    .faq-mini {
+      background: #fcf5ef;
+      border-radius: 24px;
+      padding: 1.8rem 2rem;
+      margin-top: 2rem;
+    }
+
+    .faq-mini h3 {
+      font-size: 1.2rem;
+      font-weight: 500;
+      color: #5b3e2c;
+      margin-bottom: 0.7rem;
+    }
+
+    .faq-mini details {
+      margin-bottom: 0.6rem;
+      border-bottom: 1px solid #e6d5c5;
+      padding-bottom: 0.5rem;
+    }
+
+    .faq-mini details:last-child {
+      border-bottom: none;
+    }
+
+    .faq-mini summary {
+      cursor: pointer;
+      font-weight: 450;
+      color: #624b3a;
+      padding: 0.25rem 0;
+    }
+
+    .faq-mini summary:hover {
+      color: #3b2b20;
+    }
+
+    .faq-mini details p {
+      margin-top: 0.4rem;
+      color: #4d3d31;
+      font-size: 0.96rem;
+    }
+
+    .footer-note {
+      margin-top: 2.8rem;
+      text-align: center;
+      font-size: 0.95rem;
+      color: #6e5543;
+      border-top: 1px solid rgba(160, 120, 95, 0.25);
+      padding-top: 2rem;
+    }
+
+    .footer-note a {
+      color: #4f3627;
+      text-decoration: none;
+      font-weight: 540;
+      border-bottom: 1px dotted #b58d74;
+    }
+
+    .footer-note a:hover {
+      border-bottom-style: solid;
+      color: #2d1d13;
+    }
+
+    .inline-link {
+      color: #65442f;
+      text-decoration: none;
+      font-weight: 540;
+      border-bottom: 1px solid #dbb9a3;
+    }
+
+    .inline-link:hover {
+      border-bottom-color: #7f5a42;
+    }
+
+    @media (max-width: 600px) {
+      body {
+        padding: 1.2rem 0.8rem;
+      }
+      .hero {
+        padding: 2rem 1.2rem;
+        border-radius: 30px 30px 18px 18px;
+      }
+      .hero h1 {
+        font-size: 2rem;
+      }
+      .card {
+        padding: 1.5rem 1.2rem;
+      }
+      .card h2 {
+        font-size: 1.3rem;
+      }
+      .faq-mini {
+        padding: 1.2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+<div class="page">
+  <div class="hero">
+    <h1>jiuyou.com</h1>
+    <span class="kicker">资料整理 · 信息索引 · 实用工具</span>
+    <p>一个以实用性为出发点的个人站点，围绕软件工具、使用技巧与文档收集展开。内容偏重真实体验，不堆砌术语，也不追逐热点。适合想快速找到靠谱参考的人。</p>
+  </div>
+
+  <div class="card-grid">
+    <!-- 第一段：背景说明 -->
+    <div class="card">
+      <h2>从整理习惯到公开索引</h2>
+      <p>做 <a href="https://soft-jiuyou.com" class="accent-link">jiuyou.com</a> 的起点很单纯：日常工作中经常遇到重复查找同一类信息的情况，比如某款软件的隐藏设置、某个协议的兼容问题、或是不同平台下的操作差异。</p>
+      <p>把这些零散笔记整理成可检索的条目，既方便自己，也能帮到有类似需求的人。网站的内容结构偏向分类索引：不追求大而全，而是把每一条记录写清楚、可验证。</p>
+      <p>目前收录的内容覆盖日常办公、开发辅助、系统配置几个方向，每篇都标注了适用环境与注意事项。</p>
+    </div>
+
+    <!-- 第二段：信息特点与场景 -->
+    <div class="card">
+      <h2>索引逻辑与查阅场景</h2>
+      <p>信息组织上采用了扁平化的标签分组，避免过深的层级。你可以通过首页的分类标签快速定位到感兴趣的区域，也可以直接搜索关键词。</p>
+      <p>常见的使用场景包括：</p>
+      <ul>
+        <li>寻找某个软件的便携版本或替代方案</li>
+        <li>对比不同工具在相同任务下的操作步骤</li>
+        <li>查阅已整理过的 FAQ 与常见报错处理</li>
+        <li>了解特定功能在旧版系统中的兼容表现</li>
+      </ul>
+      <p>每篇文章末尾都附有修改日期和参考来源，方便核对时效。</p>
+    </div>
+
+    <!-- 第三段：自然介绍与维护说明 -->
+    <div class="card">
+      <h2>持续维护与内容方向</h2>
+      <p>这个站点不是一次性的项目，而是长期维护的资料库。更新频率大概每周 1–2 篇，内容以实际验证过的信息为主。如果遇到软件版本更新或流程变动，也会回头修订旧文。</p>
+      <p>未来计划增加更多对比型内容，比如同类软件在不同系统下的表现差异，以及更细致的索引标签。目前所有内容均由个人整理，不接广告，也不做商业推广。</p>
+      <p>如果你对某个话题有疑问，或者发现内容需要修正，可以通过页面底部的方式联系我——当然，前提是你已经在站内浏览过相关条目。</p>
+    </div>
+  </div>
+
+  <!-- FAQ 摘要 -->
+  <div class="faq-mini">
+    <h3>常见问题摘要</h3>
+    <details>
+      <summary>站内内容都是原创吗？</summary>
+      <p>大部分是个人整理与实测记录，部分通用知识会引用官方文档并注明出处。转载的内容会有明确标注。</p>
+    </details>
+    <details>
+      <summary>为什么有些文章没有截图？</summary>
+      <p>为了保持页面加载速度和维护便利，部分流程仅用文字描述。关键步骤会补充截图，但不会每段都配图。</p>
+    </details>
+    <details>
+      <summary>网站会一直免费吗？</summary>
+      <p>目前没有收费计划。维持一个干净、可检索的资料页就是初衷。</p>
+    </details>
+  </div>
+
+  <!-- 页尾访问提示 -->
+  <div class="footer-note">
+    <p>以上是关于 <a href="https://soft-jiuyou.com">jiuyou.com</a> 的大致介绍。<br>
+    如果你正在寻找系统工具、软件用法或配置方面的可靠记录，不妨直接浏览站内的分类索引。</p>
+  </div>
+</div>
+</body>
+</html>
